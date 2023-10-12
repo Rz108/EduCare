@@ -80,7 +80,7 @@ def exp():
             if count_normal>count_desp:
                 res='Normal'
             else:
-                res='Depressed'
+                res='Stress'
         _, buffer = cv2.imencode('.jpg', test_img)
         test_img = buffer.tobytes()
         
@@ -158,7 +158,7 @@ def stop_video():
 
 import openai
 
-openai.api_key = "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"
+openai.api_key = ""
 
 # Flask route for chatbot interaction
 @app.route('/chat_science',methods=['GET'])
