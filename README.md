@@ -7,6 +7,8 @@ Stress detector was train on the fer2013 dataset and detects Anxious, Stress or 
 
 ## How to Run
 1. Download the folder or git clone
-2. Run app.py
-3. Run server.js
-4. Run npm start
+2. Create tryhack database in mysql
+3. Change credentials
+4. Run app.py
+5. Run server.js
+6. Run npm start
