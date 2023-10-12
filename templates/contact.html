@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      margin-top: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+    }
+    input[type="text"], input[type="email"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007BFF;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Feedback</h2>
+    <form id="contact-form">
+
+      <div class="form-group">
+        <label for="message">Message for feedback</label>
+        <textarea id="message" name="message" rows="10" cols =80 required></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    <a href="/courses" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Back</a>
+    </form>
+  </div>
+  <script>
+    const contactForm = document.getElementById('contact-form');
+
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      if (!name || !email || !message) {
+        alert('Please fill in all fields');
+      } else {
+        alert(`Thank you, ${name}! Your message has been sent.`);
+        contactForm.reset();
+      }
+    });
+  </script>
+</body>
+</html>

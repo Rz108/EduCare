@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>English</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 100px;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .chat-container {
+            max-width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #7395d3;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .chat-box {
+            padding: 10px;
+            height: 600px;
+            overflow-y: auto;
+        }
+
+        .user-input {
+            display: flex;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .message-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .message-bubble {
+            background-color: #609ad8;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 10px rgb(201, 201, 201);
+            max-width: 70%;
+        }
+
+        .user-message-container {
+            justify-content: flex-end;
+        }
+
+        .user-message-bubble {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">English Bot</div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="user-input">
+            <input type="text" id="user-input" placeholder="Type your message">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+    
+    <a href="/courses" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Back</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const chatBox = document.getElementById("chat-box");
+            const userInput = document.getElementById("user-input");
+            const sendButton = document.getElementById("send-button");
+    
+            sendButton.addEventListener("click", function () {
+                const userMessage = userInput.value;
+                if (userMessage) {
+                    appendMessage("You: " + userMessage);
+                    userInput.value = "";
+    
+                    // Make an API request to OpenAI's GPT-3 model
+                    fetch('/chat_english', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: userMessage }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            const botResponse = "GPT: " + data.reply;
+                            appendMessage(botResponse);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+            });
+    
+            function appendMessage(message) {
+                const messageContainer = document.createElement("div");
+                messageContainer.classList.add("message-container");
+                const messageBubble = document.createElement("div");
+                messageBubble.classList.add("message-bubble");
+                messageBubble.textContent = message;
+                messageContainer.appendChild(messageBubble);
+                chatBox.appendChild(messageContainer);
+                chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom of the chat box
+            }
+        });
+    </script>
+</body>
+
+</html>

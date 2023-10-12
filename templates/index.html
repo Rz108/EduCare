@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anxiety and Depression Detection</title>
+  <link rel="stylesheet" href="../static/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="face">Face</a></li>
+      <li><a href="courses">Subjects</a></li>
+      <li><a href="chat_stress">Chat</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <h2>Stress Detection</h2>
+    <p>
+      This is a short 10-20 seconds of stress detection using facial recognition with computer vision. Do not need to
+      worry about privacy issues as this is neither saved nor stored.
+    </p>
+    <p>
+      Do provide feedback and click continue below to direct to the process
+    </p>
+  </div>
+  <div class="center-button-container">
+    <button id="direct">Continue</button>
+  </div>
+
+</body>
+<script>
+
+document.getElementById('direct').addEventListener('click', function() {
+    window.location.href = 'http://127.0.0.1:5000/face'; 
+});
+</script>
+
+
+</html>
